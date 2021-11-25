@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using ValmartRESTfulAPI.Dtos;
 using ValmartRESTfulAPI.Entities;
 using ValmartRESTfulAPI.Repositories;
 
@@ -17,9 +19,10 @@ namespace ValmartRESTfulAPI.Controllers
          }
          
          [HttpGet]
-         public IEnumerable<Product> GetProducts()
+         public IEnumerable<ProductDTO> GetProducts()
          {
-             return repo.getProducts();
+             var products = repo.getProducts().Select(product => product.AsDTO());
+             return products;
          }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ValmartRESTfulAPI.Repositories;
 
 namespace ValmartRESTfulAPI
 {
@@ -25,7 +26,7 @@ namespace ValmartRESTfulAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddSingleton<IProductRepository, InMemProductsRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

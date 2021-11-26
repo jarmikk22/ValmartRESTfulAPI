@@ -5,6 +5,7 @@ namespace ValmartRESTfulAPI.Repositories
 {
     public interface IProductRepository
     {
-        public IEnumerable<Product> getProducts();
+        public IEnumerable<Product> GetProducts();
+        public void CreateProduct(Product product);
     }
 }

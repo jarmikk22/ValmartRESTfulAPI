@@ -25,9 +25,14 @@ namespace ValmartRESTfulAPI.Repositories
             };
         }
 
-        public IEnumerable<Product> getProducts()
+        public IEnumerable<Product> GetProducts()
         {
             return products;
+        }
+
+        public void CreateProduct(Product product)
+        {
+            products.Add(product);
         }
     }
     

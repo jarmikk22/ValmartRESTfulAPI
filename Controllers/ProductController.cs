@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +22,23 @@ namespace ValmartRESTfulAPI.Controllers
          [HttpGet]
          public IEnumerable<ProductDTO> GetProducts()
          {
-             var products = repo.getProducts().Select(product => product.AsDTO());
+             var products = repo.GetProducts().Select(product => product.AsDTO());
              return products;
+         }
+
+         [HttpPost]
+         public ActionResult<ProductDTO> CreateProduct(CreateProductDTO productDto)
+         {
+             var product = new Product()
+             {
+                 Id = Guid.NewGuid(),
+                 Name = productDto.Name,
+                 Brand = productDto.Brand,
+                 Price = productDto.Price,
+                 CreatedDate = new DateTime(),
+             };
+             repo.CreateProduct(product);
+             return Ok(product.AsDTO());
          }
     }
 }
